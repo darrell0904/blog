@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面向对象编程之封装</title>
+</head>
+<body>
+	<h1>面向对象编程之封装——面向对象的思想就是对一些属性的隐藏与暴露，比如私有属性、私有方法、共有属性、共有方法和保护方法</h1>
+	<script type="text/javascript">
+		// 私有属性和私有方法、特权方法，对象公有属性和对象的共有方法，构造器
+		var Book = function(id, name, price) {
+			// 私有属性
+			var num = 1;
+			// 私有方法
+			function checkId() {
+
+			};
+			// 特权方法
+			this.getName = function() {};
+			this.getPrice = function() {};
+			this.setName = function() {};
+			this.setPrice = function() {};
+
+			// 对象的共有属性
+			this.id = id;
+			// 对象的共有方法
+			this.copy = function() {};
+
+			// 构造器
+			this.setName(name);
+			this.setPrice(price);
+		}
+
+
+		// 类静态公有属性（对象不能访问）
+		Book.isChinese = true;
+		// 类静态的共有方法（对象不能访问）
+		Book.resetTime = function() {
+			console.log('new Time');
+		}
+
+		Book.prototype = {
+			// 公有属性
+			isJSBook : false,
+			// 公有方法
+			display : function() {
+
+			}
+		}
+
+		// 测试代码
+		var b = new Book('11', 'javascript', 50);
+		console.log(b.num); // undefined
+		console.log(b.isJSBook); // false
+		console.log(b.id); // 11
+		console.log(b.isJSBook); // undefined
+
+
+		// 闭包——有时我们经常将类的静态变量通过闭包来实现
+
+		// 方法1
+		// var Book = (function(){
+		// 	// 静态私有变量
+		// 	var bookNum = 0;
+		// 	// 静态私有方法
+		// 	function checkBook(name) {
+
+		// 	}
+		// 	// 返回构造函数
+		// 	return function(newId, newName, newPrice) {
+		// 		// 私有变量
+		// 		var name, price;
+		// 		// 私有方法
+		// 		function checkId(id) {};
+
+		// 		// 特权方法
+		// 		this.getName = function() {};
+		// 		this.getPrice = function() {};
+		// 		this.setName = function() {};
+		// 		this.setPrice = function() {};
+
+		// 		// 对象的共有属性
+		// 		this.id = id;
+		// 		// 对象的共有方法
+		// 		this.copy = function() {};
+		// 		bookNum++;
+		// 		if (bookNum > 100) {
+		// 			throw new Error('我们仅出版100本书');
+		// 		}
+		// 		// 构造器
+		// 		this.setName(name);
+		// 		this.setPrice(price);
+
+		// 	}
+		// })()
+
+		// Book.prototype = {
+		// 	// 静态公有属性
+		// 	isJSBook : false,
+		// 	// 静态公有方法
+		// 	display : function() {
+
+		// 	}
+		// }
+
+
+		// 方法2
+		// var Book = (function(){
+		// 	// 静态私有变量
+		// 	var bookNum = 0;
+		// 	// 静态私有方法
+		// 	function checkBook(name) {
+
+		// 	}
+		// 	// 返回构造函数
+		// 	function _book(newId, newName, newPrice) {
+		// 		// 私有变量
+		// 		var name, price;
+		// 		// 私有方法
+		// 		function checkId(id) {};
+
+		// 		// 特权方法
+		// 		this.getName = function() {};
+		// 		this.getPrice = function() {};
+		// 		this.setName = function() {};
+		// 		this.setPrice = function() {};
+
+		// 		// 对象的共有属性
+		// 		this.id = id;
+		// 		// 对象的共有方法
+		// 		this.copy = function() {};
+		// 		bookNum++;
+		// 		if (bookNum > 100) {
+		// 			throw new Error('我们仅出版100本书');
+		// 		}
+		// 		// 构造器
+		// 		this.setName(name);
+		// 		this.setPrice(price);
+
+		// 	}
+		// 	_book.prototype = {
+		// 		// 静态公有属性
+		// 		isJSBook : false,
+		// 		// 静态公有方法
+		// 		display : function() {
+
+		// 		}
+		// 	}
+
+		// 	// 返回类
+		// 	return _book
+		// })()
+
+
+
+
+		// ***********寻找一位检察长，当我们忘了写new的时候的解决方法
+		// 图书安全类
+		var Book = function (title, time, type) {
+			// 判断执行过程中 this 是否是当前这个对象（如果是说明是用new创建的）
+			if (this instanceof Book) {
+				this.title = title;
+				this.time = time;
+				this.type = type;
+			// 否则重新创建这一个对象
+			} else {
+				return new Book(title. time, type);
+			}
+		}
+
+		// 为了防止忘记写new时，执行函数的时候没有返回值，同时this指向window。
+
+		var book = Book('Javascript', '2015', 'js');
+
+		console.log(book);
+		console.log(book.title);
+		console.log(book.time);
+		console.log(book.type);
+		console.log(window.title);
+		console.log(window.time);
+		console.log(window.type);
+
+
+	</script>
+</body>
+</html>

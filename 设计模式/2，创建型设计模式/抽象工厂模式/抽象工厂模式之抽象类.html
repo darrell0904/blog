@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>抽象工厂模式之抽象类</title>
+</head>
+<body>
+	<h1>抽象工厂模式之抽象类</h1>
+	<script type="text/javascript">
+		// 汽车抽象类，当使用其实例对象的方法时会抛出错误，必须要在子类里面进行改写
+		var Car = function() {};
+		Car.prototype = {
+			getPrice : function() {
+				return new Error('抽象方法不能调用');
+			},
+			getSpeed : function() {
+				return new Error('抽象方法不能调用');
+			}
+		}
+	</script>
+</body>
+</html>

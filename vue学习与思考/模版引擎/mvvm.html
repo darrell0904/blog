@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mvvm</title>
+</head>
+<body>
+	<h1></h1>
+	<script type="text/javascript">
+		const re = /{{(.+?)}}/g;
+
+		const tpl = "<p>my name is {{ name }}</p>"+
+					"<p>my job is {{ job }}</p>";
+
+		const data = {
+		    name: "shawn cheung",
+		    job: "frontend"
+		};
+
+
+		const TemplateEngine = (tpl, data) => {
+		    const re = /{{(.+?)}}/g; // 匹配占位符的正则表达式
+		    let result = [];  // 结果
+		    let cursor = 0;// 遍历游标
+		    // 遍历替换, 直到 tpl 中没有找到占位符为止
+		    while (match = re.exec(tpl)) { 
+		    	console.log('match===',match);
+		        let [placeholder, prop] = match;
+		        // 将匹配到的占位符前的字符加入到 result 数组中
+		        result.push(tpl.slice(cursor, match.index));
+		        // 根据匹配到的占位符中的变量名到传入的 data 对象中取出真正的值
+		        result.push(data[prop.trim()]);
+		        console.log(result);
+		        // 改变游标值
+		        cursor = match.index + placeholder.length;
+		    }
+		    // 最后将剩下的字符串加到 result 数组中
+		    result.push(tpl.slice(cursor, tpl.length));
+		    // 返回结果 HTML 字符串
+		    return result.join('');
+		}
+
+		console.log(TemplateEngine(tpl,data));
+
+	</script>
+</body>
+</html>

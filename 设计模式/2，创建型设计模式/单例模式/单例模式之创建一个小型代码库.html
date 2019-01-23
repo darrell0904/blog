@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单例模式之创建一个小型代码库</title>
+</head>
+<body>
+	<h1>单例模式之创建一个小型代码库</h1>
+	<script type="text/javascript">
+		var A = {
+			Util : {
+				util_method1 : function() {},
+				util_method2 : function() {}
+				// ...
+			},
+			Tool : {
+				tool_method1 : function() {},
+				tool_method2 : function() {}
+				// ...
+			},
+			Ajax : {
+				get : function() {},
+				post : function() {},
+				// ...
+			},
+			other : {
+				// ...
+			}
+			// ...
+		}
+
+		A.Util.util_method1();
+		A.Tool.tool_method2();
+		A.Ajax.get();
+	</script>
+</body>
+</html>

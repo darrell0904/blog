@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拷贝</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 迭代递归法
+		// 序列化反序列化法
+
+		// 判断是否为对象
+		function isObject(o) {
+		    return (typeof o === 'object' || typeof o === 'function') && o !== null
+		}
+
+		let test = {
+		    num: 0,
+		    str: '',
+		    boolean: true,
+		    unf: undefined,
+		    nul: null,
+		    obj: {
+		        name: '我是一个对象',
+		        id: 1
+		    },
+		    arr: [0, 1, 2],
+		    func: function() {
+		        console.log('我是一个函数')
+		    },
+		    date: new Date(0),
+		    reg: new RegExp('/我是一个正则/ig'),
+		    err: new Error('我是一个错误')
+		}
+
+		test.loopObj = test
+
+		let result = deepClone(test)
+
+		console.log(result)
+
+		for (let key in result) {
+		    if (isObject(result[key]))
+		        console.log(`${key}相同吗？ `, result[key] === test[key])
+		}
+
+
+		// 1. 迭代递归法
+
+		// 迭代递归法：深拷贝对象与数组
+		// function deepClone(obj) {
+		//     if (!isObject(obj)) {
+		//         throw new Error('obj 不是一个对象！')
+		//     }
+
+		//     let isArray = Array.isArray(obj)
+
+		//     let cloneObj = isArray ? [] : {}
+		//     for (let key in obj) {
+		//         cloneObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key]
+		//     }
+
+		//     return cloneObj
+		// }
+
+		// 代理法
+		// reflect的遍历：https://blog.csdn.net/qq_25178609/article/details/52663985
+		// function deepClone(obj) {
+		//     if (!isObject(obj)) {
+		//         throw new Error('obj 不是一个对象！')
+		//     }
+
+		//     let isArray = Array.isArray(obj);
+		//     let cloneObj = isArray ? [...obj] : { ...obj };
+		//     Reflect.ownKeys(cloneObj).forEach(key => {
+		//         cloneObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key]
+		//     })
+
+		//     return cloneObj
+		// }
+
+		// _lodash 的 _.cloneDeep
+
+		// 2.序列化反序列化法
+
+		// 序列化反序列化法
+		// function deepClone(obj) {
+		// 	// console.log(JSON.stringify(obj.func)); // undefined
+		// 	// console.log(JSON.stringify(obj.date)); // undefined
+
+		//     return JSON.parse(JSON.stringify(obj))
+		// }
+
+
+
+		// isPrototypeOf&&getPrototypeOf 的意思
+		// https://www.cnblogs.com/giggle/p/5208199.html
+		
+		// 封装的代码
+		// function deepClone(obj) {
+		//     let family = {}
+		//     let parent = Object.getPrototypeOf(obj)
+
+		//     while (parent != null) {
+		//         family = completeAssign(deepClone(family), parent)
+		//         parent = Object.getPrototypeOf(parent)
+		//     }
+
+		//     // 下面这个函数会拷贝所有自有属性的属性描述符,来自于 MDN
+		//     // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+		//     function completeAssign(target, ...sources) {
+		//         sources.forEach(source => {
+		//             let descriptors = Object.keys(source).reduce((descriptors, key) => {
+		//                 descriptors[key] = Object.getOwnPropertyDescriptor(source, key)
+		//                 return descriptors
+		//             }, {})
+
+		//             // Object.assign 默认也会拷贝可枚举的Symbols
+		//             Object.getOwnPropertySymbols(source).forEach(sym => {
+		//                 let descriptor = Object.getOwnPropertyDescriptor(source, sym)
+		//                 if (descriptor.enumerable) {
+		//                     descriptors[sym] = descriptor
+		//                 }
+		//             })
+		//             Object.defineProperties(target, descriptors)
+		//         })
+		//         return target
+		//     }
+
+		//     return completeAssign(deepClone(obj), family)
+		// }
+
+
+
+
+
+	</script>
+</body>
+</html>

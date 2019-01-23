@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>zepto_test</title>
+	<script type="text/javascript" src="./my_zepto.js"></script>
+</head>
+<body style="position: relative;">
+	<p>我是p</p>
+	<div class='div'>
+		<span class="span1">text1</span>
+		<span class="span2">text2</span>
+		<span class="span1">text3</span>
+	</div>
+	<h1 id="h1">h1标题</h1>
+	<div id="div1" style="position: static;">
+		<div id="div2" style="position: absolute;">11111</div>
+	</div>
+	<div id="div3" style="margin-bottom: 1000px;">
+		哈哈哈哈哈
+	</div>
+</body>
+<script type="text/javascript">
+	//test1
+	var test1 = {
+	  name:"a",
+	  item:{
+	    name:"b",
+	    nickname:"c"
+	  }
+	};
+
+	//简单扩展
+	// $.extend(test1,{name:"a",item:{name:"b",item:{name:"c"}}});
+
+	// console.log('====',test1);
+
+	//深度扩展
+	// $.extend(true, test1,{name:"a",item:{name:"b",item:{name:"c"}}});
+	// console.log(test1);
+
+	// $.each("Boolean Number String Function Array Date RegExp Object Error".split(" "), function(i, name) {
+    //     console.log('====i====',i);
+    //     console.log('====name====',name);
+    // })
+
+	// var aaa = $.map({"yao":1,"tai":2,"yang":3},function(item,index){
+	//     if(item>1){return item*item;}
+	// }); 
+
+	// var bbb = $.map([1,2,3,4,5],function(item,index){
+    //    if(item>1){return item*item;}
+	// }); 
+
+	// console.log(aaa);
+	// console.log(bbb);
+
+	// 驼峰转化
+	// var aaa = $.camelCase('background-color');
+	// console.log(aaa);
+
+	// offset
+	// var aaa = $('#div3').offset({top:10,left:100}); // relative,absolute,fixed能监测的到
+	// console.log(aaa);
+
+	/* isPrototypeOf(确定一个对象的原型链中是否继承了prototype, isPrototypeOf() 方法允许你检查一个对象是否存在于另一个对象的原型链上。)
+	 * getPrototypeOf(返回对象__proto__指向的原型prototype)
+	 * https://www.cnblogs.com/giggle/p/5208199.html
+	 *
+	 	function Foo() {}
+		function Bar() {}
+		function Baz() {}
+
+		Bar.prototype = Object.create(Foo.prototype);
+		Baz.prototype = Object.create(Bar.prototype);
+
+		var baz = new Baz();
+
+		console.log(Baz.prototype.isPrototypeOf(baz)); // true
+		console.log(Bar.prototype.isPrototypeOf(baz)); // true
+		console.log(Foo.prototype.isPrototypeOf(baz)); // true
+		console.log(Object.prototype.isPrototypeOf(baz)); // true
+		
+
+		isPrototypeOf和 instanceof 的区别
+
+		https://www.cnblogs.com/ArthurXml/p/6555509.html
+	 *
+	*/
+</script>
+</html>

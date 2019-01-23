@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模版方法模式之创建多类导航</title>
+</head>
+<body>
+	<h1>模版方法模式之创建多类导航</h1>
+	<div id="content"></div>
+	<script type="text/javascript">
+		// 格式化字符串的方法
+		function formateString(str, data) {
+			return str.replace(/\{#(\w+)#\}/g, function(match, key) {
+				return typeof data[key] === undefined ? '' : data[key];
+			})
+		}
+
+		// 基础导航
+		var Nav = function(data) {
+			// 基础导航样式模版
+			this.item = '<a href="{#href#}" title="{#title#}" target="_blank">{#name#}</a>';
+			// 创建字符串
+			this.html = '';
+			// 格式化数据
+			for (var i = 0, len = data.length; i < len; i++) {
+				this.html += formateString(this.item, data[i]);
+			}
+			// 返回字符串数据
+			return this.html;
+		}
+
+
+		// 带有消息提醒信息导航
+		var NumNav = function(data) {
+			// 消息提醒信息组件模版
+			var tpl = '<b>{#num#}</b>';
+			//  装饰数据
+			for (var i = data.length - 1; i >= 0; i--) {
+				data[i].name += data[i].name + formateString(tpl, data[i]);
+			}
+			// 继承基础导航类，并返回字符串
+			return Nav.call(this, data);
+		}
+
+		// 带有链接地址的导航
+		var LinkNav = function(data) {
+			// 链接地址模版
+			var tpl = '<span>{#href#}</span>';
+			// 装饰数据
+			for (var i = data.length - 1; i >= 0; i--) {
+				console.log('===data[i].name===',data[i].name);
+				data[i].name += formateString(tpl, data[i]);
+			}
+			console.log('===data===',data);
+			// 继承基础导航类，并返回字符串
+			return Nav.call(this, data);
+		}
+
+		// 获取导航容器
+		var nav = document.getElementById('content');
+		// 添加内容
+		nav.innerHTML = LinkNav([
+			{
+				href: 'http:/www.baidu.com/',
+				title: '百度一下，你就知道',
+				name: '百度',
+				num: '10'
+			},
+			{
+				href: 'http:/www.taobao.com/',
+				title: '淘宝商城',
+				name: '淘宝',
+				num: '2'
+			},
+			{
+				href: 'http:/www.qq.com/',
+				title: '腾讯首页',
+				name: '腾讯',
+				num: '3'
+			}
+		])
+	</script>
+</body>
+</html>

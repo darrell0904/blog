@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>安全模式类</title>
+</head>
+<body>
+	<h1>安全模式类（主要忘了忘记写 new时，出现错误）</h1>
+	<script type="text/javascript">
+		var Demo = function() {};
+		
+		Demo.prototype = {
+			show : function() {
+				console.log('成功获取');
+			}
+		}
+
+		var d = new Demo();
+		d.show(); // 成功获取
+
+		var d = Demo(); // 这里面的 this 是指向 window 的
+		d.show(); // Uncaught TypeError: Cannot read property 'show' of undefined
+
+		var Demo1 = function() {
+			if (!(this instanceof Demo)) {
+				return new Demo();
+			}
+		}
+
+		var d1 = Demo1();
+		d.show('成功获取');
+
+	</script>
+</body>
+</html>

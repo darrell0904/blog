@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型继承复制方法</title>
+</head>
+<body>
+	<h1>原型继承复制方法</h1>
+	<script type="text/javascript">
+		/*******
+		 * 基于已经存在的模版对象克隆出新对象的模式
+		 * arguments[0],arguments[1],arguments[2]: 参数1，参数2，参数3表示模版对象
+		 * 注意。这里对模版引用类型的属性实质上进行了浅复制（引用类型属性共享），当然根据需求可以自行深复制（引用类型属性复制）
+		*******/
+		function prototypeExtend() {
+			var F = function() {},
+				args = arguments,
+				i = 0,
+				len = args.length;
+				// console.log('==args==',args);
+
+			for (; i < len; i++) {
+				// console.log('==args==',args[i]);
+				// 遍历每一个模版对象中的属性
+				for (var j in args[i]) {
+					console.log(j);
+					F.prototype[j] = args[i][j]
+				}
+			}
+			console.log(F.prototype);
+			// 返回一个缓存实例
+			return new F();
+		}
+
+		var penguin = prototypeExtend({
+			speed : 20,
+			swim : function() {
+				console.log('游泳速度' + this.speed);
+			}
+		}, {
+			run : function(speed) {
+				console.log('跑步速度' + speed);
+			}
+		}, {
+			jump : function() {
+				console.log('跳跃动作');
+			}
+		})
+
+		penguin.swim();
+		penguin.run(10);
+		penguin.jump();
+
+
+	</script>
+</body>
+</html>

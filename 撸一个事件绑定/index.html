@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./myEvents.js"></script>
+	<!-- <script src="http://119.27.182.76/myTools/events.min.js"></script> -->
+</head>
+<body>
+	<h1>哈哈哈哈</h1>
+	<script type="text/javascript">
+		var myEvents = new Events();
+
+		// myEvents.getListenerCount('eatting') // type 参数为可选参数
+
+		// 简单示例
+
+		var eating1 = function() {
+			console.log('我是eating1的一个方法');
+		}
+
+		var eating2 = function() {
+			console.log('我是eating2的一个方法');
+		}
+
+		// 添加监听事件
+		myEvents.on('eatting', eating1); // 0
+		myEvents.on('eatting', eating1); // 1
+		myEvents.on('eatting', eating1); // 2
+    myEvents.on('eatting', eating1); // 3
+
+		myEvents.on('eatting', eating2); // 0
+		myEvents.on('eatting', eating2); // 1
+
+		// myEvents.on('sleeping', eating2);
+
+
+		myEvents.removeListener('eatting', eating1);
+
+
+
+		// 获取事件数量
+		// myEvents.getListenerCount('eatting'); // return: 2
+
+		// myEvents.getListenerCount('sleeping'); // return: 1
+
+		myEvents.getListenerCount();
+
+		// myEvents.emit('eatting', '睡觉','到痘痘');
+
+		
+	</script>
+</body>
+</html>

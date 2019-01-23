@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面向对象编程之多继承</title>
+</head>
+<body>
+	<h1>面向对象编程之多继承</h1>
+	<script type="text/javascript">
+		// 单继承 属性复制
+		// var extend = function(target, sourse) {
+		// 	// 遍历源对象中的属性
+		// 	for (var property in sourse) {
+		// 		// 将源对象中的属性复制到目标对象中去
+		// 		target[property] = sourse[property]
+		// 	}
+
+		// 	// 返回目标对象
+		// 	return target;
+		// }
+
+		// // 浅复制，只能复制值类型的属性。
+
+		// var book = {
+		// 	name : 'javascript 设计模式',
+		// 	alike : ['css', 'html', 'javascript']
+		// }
+
+		// var anotherBook = {
+		// 	color : 'blue'
+		// }
+
+		// extend(anotherBook, book);
+
+		// console.log(anotherBook.name);
+		// console.log(anotherBook.alike);
+
+		// anotherBook.alike.push('ajax');
+		// anotherBook.name = '设计模式';
+
+		// console.log(anotherBook.name);
+		// console.log(anotherBook.alike);
+		// console.log(book.name);
+		// console.log(book.alike);
+
+
+		// 多继承 属性复制
+		Object.prototype.mix = function() {
+			var i = 0,
+				len = arguments.length,
+				arg;
+
+			// 遍历被继承的对象
+			for (; i < len; i++) {
+				// 缓存当前对象
+				arg = arguments[i];
+				// 遍历被继承对象中的属性
+				for (var property in arg) {
+					// 将被继承的对象中属性复制到目标对象中去
+					this[property] = arg[property];
+				}
+			}
+		}
+
+		var book1 = {
+			name : 'javascript 设计模式1',
+			alike : ['css', 'html', 'javascript']
+		}
+
+		var book2 = {
+			name : 'javascript 设计模式2',
+			alike : ['css', 'html', 'javascript']
+		}
+
+		var otherBook = {
+			color : 'blue'
+		}
+
+		otherBook.mix(book1,book2);
+		console.log(otherBook);
+
+
+
+
+
+	</script>
+</body>
+</html>

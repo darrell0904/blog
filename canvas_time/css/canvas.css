@@ -1,0 +1,178 @@
+body {
+	background-color: #efefef;
+}
+
+#box{
+	width: 600px;
+	position: relative;
+	margin: 50px auto;
+	height: 600px;
+	background-image: url(http://alicliimg.clewm.net/147/701/1701147/15430450518891d1e2d26a71c8e41115907e6ac8fc7751543045043.png);
+  background-size: 144%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+canvas{
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+#box img {
+	width: 50px;
+	height: 50px;
+}
+
+.imgbox .name {
+	text-align: center;
+  position: absolute;
+}
+
+.img1 {
+	display: inline-block;
+	position: absolute;
+  top: 47px;
+  left: 47%;
+}
+
+.img2 {
+	display: inline-block;
+	position: absolute;
+  top: 82px;
+  left: 65%;
+}
+
+.img3 {
+	display: inline-block;
+	position: absolute;
+  top: 28%;
+  left: 79%;
+} 
+
+.img4 {
+	display: inline-block;
+	position: absolute;
+  top: 46%;
+  left: 83%;
+} 
+
+.img5 {
+	display: inline-block;
+	position: absolute;
+  top: 65%;
+  left: 78%;
+} 
+
+.img6 {
+	display: inline-block;
+	position: absolute;
+  top: 77%;
+  left: 65%;
+} 
+
+.img7 {
+	display: inline-block;
+	position: absolute;
+  top: 83%;
+  left: 46%;
+} 
+
+.img8 {
+	display: inline-block;
+	position: absolute;
+  top: 77%;
+  left: 28%;
+} 
+
+.img9 {
+	display: inline-block;
+	position: absolute;
+  top: 65%;
+  left: 13%;
+} 
+
+.img10 {
+	display: inline-block;
+	position: absolute;
+  top: 46%;
+  left: 9%;
+} 
+
+.img11 {
+	display: inline-block;
+	position: absolute;
+  top: 28%;
+  left: 14%;
+} 
+
+.img12 {
+	display: inline-block;
+	position: absolute;
+  top: 13%;
+  left: 27%;
+} 
+
+.img1 .name {
+  top: 40px;
+  left: 14px;
+}
+
+.img2 .name {
+  top: 35px;
+  left: 0px;
+}
+
+.img3 .name {
+  top: 27px;
+  left: -17px;
+}
+
+.img4 .name {
+  top: 20px;
+  left: -17px;
+}
+
+.img5 .name {
+  top: 0px;
+  left: -17px;
+}
+
+.img6 .name {
+  top: -6px;
+  left: 3px;
+}
+
+.img7 .name {
+  top: -17px;
+  left: 13px;
+}
+
+.img8 .name {
+  top: -18px;
+  left: 28px;
+}
+
+.img9 .name {
+  top: 5px;
+  left: 45px;
+}
+
+.img10 .name {
+  top: 11px;
+  left: 48px;
+}
+
+.img11 .name {
+  top: 33px;
+  left: 44px;
+}
+
+.img12 .name {
+  top: 39px;
+  left: 31px;
+}
+
+.timeBox {
+	text-align: center;
+}
